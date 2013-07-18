@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  custom_field_id: 1
+  value: MyString
+  form_id: 1
+
+two:
+  custom_field_id: 1
+  value: MyString
+  form_id: 1

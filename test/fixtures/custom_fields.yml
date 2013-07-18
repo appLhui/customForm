@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lable: MyString
+  type: 
+  max_length: 1
+  is_required: false
+  default_value: MyString
+  custom_table_id: 1
+
+two:
+  lable: MyString
+  type: 
+  max_length: 1
+  is_required: false
+  default_value: MyString
+  custom_table_id: 1
