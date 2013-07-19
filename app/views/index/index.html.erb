@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="navbar">
-        <div class="navbar-inner"><a class="brand">CRM系统 <small>--Sloth 插件演示</small></a>
+        <div class="navbar-inner"><a class="brand ">CRM系统 <small>--Sloth 插件演示</small></a>
           <ul class="nav">
             <li class="divider-vertical">{{#linkTo custom_tables}}自定义表列表{{/linkTo}}</li>
           </ul>
@@ -19,16 +19,8 @@
     {{outlet custom_table_new}}
     {{outlet custom_field_new}}
     <div class="row-fluid">
-      <div class="span3 box_sidebar">
-        <div class="box_padding">
-          {{outlet custom_tables}}
-        </div>
-      </div>
-      <div class="span9 box_main">
-        <div class="box_padding">
-          {{outlet custom_fields}}
-        </div>
-      </div>
+      <div class="span3">{{outlet custom_tables}}</div>
+      <div class="span9">{{outlet custom_fields}}</div>
   </div>
 </script>
 
@@ -48,28 +40,33 @@
 </script>
 
 <script  type="text/x-handlebars" data-template-name="custom_tables">
-    {{view Ember.TextField valueBinding="search" class="span10 " type="text" placeholder="按表名称过滤"}}
-  <div class="accordion" id="tables">
-    {{#each searchedContent}}
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#tables" href="#table_{{unbound id}}">
-         <i class="icon-tasks"></i> {{name}}
-        </a>
-      </div>
-      <div id="table_{{unbound id}}" class="accordion-body collapse ">
-        <div class="accordion-inner">
-          <legend>{{name}}<small>----表详细介绍</small></legend>
-          <p>{{desc}}</p>
-          {{#linkTo 'custom_fields' this  class="button glow button-rounded button-flat-action"}}<i class="icon-edit"></i>{{/linkTo}}
-          <a class="button glow button-rounded button-flat-caution" {{action 'destroy' this}}> <i class="icon-trash"></i></a>
-          {{#linkTo 'custom_fields' this  class="button glow button-rounded button-flat-royal"}}<i class="icon-list-alt"></i>{{/linkTo}}
+  <div class=" box_sidebar">
+    <div class="box_padding">
+      {{view Ember.TextField valueBinding="search" class="span10 " type="text" placeholder="按表名称过滤"}}
+      <div class="accordion" id="tables">
+        {{#each searchedContent}}
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle "  data-toggle="collapse" data-parent="#tables" href="#table_{{unbound id}}">
+              <i class="icon-tasks"></i> {{name}}
+            </a>
+          </div>
+          <div id="table_{{unbound id}}" class="accordion-body collapse ">
+            <div class="accordion-inner">
+              <legend class="text-inner-shadow">{{name}}<small>----表详细介绍</small></legend>
+              <p>{{desc}}</p>
+              {{#linkTo 'custom_fields' this  class="button glow button-rounded button-flat-action"}}<i class="icon-edit"></i>{{/linkTo}}
+              <a class="button glow button-rounded button-flat-caution" {{action 'destroy' this}}> <i class="icon-trash"></i></a>
+              {{#linkTo 'custom_fields' this  class="button glow button-rounded button-flat-royal"}}<i class="icon-list-alt"></i>{{/linkTo}}
+            </div>
+          </div>
         </div>
+        {{/each}}
       </div>
+      {{#linkTo 'custom_table_new'  class="button glow button-rounded button-flat-primary"}}<i class="icon-plus-sign"></i>&nbsp;添加新表{{/linkTo}}
     </div>
-    {{/each}}
   </div>
-  {{#linkTo 'custom_table_new'  class="button glow button-rounded button-flat-primary"}}<i class="icon-plus-sign"></i>&nbsp;添加新表{{/linkTo}}
+
 </script>
 
 <script  type="text/x-handlebars" data-template-name="custom_table">
@@ -80,42 +77,51 @@
 </script>
 
 <script  type="text/x-handlebars" data-template-name="custom_fields">
-     <legend>{{controllers.custom_table.name}}</legend>
-  {{#linkTo 'custom_field_new'  class="button glow button-rounded button-flat-primary"}}<i class=" icon-plus"></i> 添加新字段{{/linkTo}}
+  <div class="box_main">
+    <div class="box_padding">
+      <legend>  <a class="txt">{{controllers.custom_table.name}}</a></legend>
+      {{#linkTo 'custom_field_new'  class="button glow button-rounded button-flat-primary"}}<i class=" icon-plus"></i> 添加新字段{{/linkTo}}
 
-    <table  class="table table-hover">
-      <thead>
-      <tr><th>字段名</th><th>字段类型</th><th>最大长度</th><th>必输项</th><th>默认值</th><th>操作</th></tr>
-      </thead>
-      <tbody>
+      <table  class="table table-hover">
+        <thead>
+        <tr><th>字段名</th><th>字段类型</th><th>最大长度</th><th>必输项</th><th>默认值</th><th>操作</th></tr>
+        </thead>
+        <tbody>
 
-      {{#each model}}
-      <tr>
-        <td>{{lable}}</td>
-        <td>{{valueType}} </td>
-        <td>{{maxLength}} </td>
-        <td>{{isRequired}}</td>
-        <td>{{defaultValue}}</td>
-        <td><a class="btn btn-link" {{action 'destroy' this}}>删除</a></td>
-      </tr>
-      {{/each}}
-      </tbody>
-    </table>
+        {{#each model}}
+        <tr>
+          <td>{{lable}}</td>
+          <td>{{valueType}} </td>
+          <td>{{maxLength}} </td>
+          <td>{{isRequired}}</td>
+          <td>{{defaultValue}}</td>
+          <td><a class="btn btn-link" {{action 'destroy' this}}>删除</a></td>
+        </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
 </script>
 
 <script  type="text/x-handlebars" data-template-name="custom_field_new">
-  <div class="well well-small">
-    <legend>添加字段</legend>
-    {{#formFor model}}
-    {{input lable label="字段名"}}
-    {{input valueType label="类型" as='select' collection="CustomForm.valueType"}}
-    {{input maxLength label="最大长度"}}
-    {{input isRequired label="必须项"}}
-    {{input defaultValue label="默认值"}}
-    {{/formFor}}
-    <button {{action 'create'}} class="button glow button-rounded button-flat-primary">创建</button>
-    &nbsp;&nbsp;&nbsp;
-    <button {{action 'goBack'}} class="button glow button-rounded button-flat">取消</button>
+  <div class="box_main">
+    <div class="box_padding">
+        <legend>添加字段</legend>
+        {{#formFor model}}
+        {{input lable label="字段名"}}
+        {{input valueType label="类型" as='select' collection="CustomForm.valueType"}}
+        {{input maxLength label="最大长度"}}
+        {{input isRequired label="必须项"}}
+        {{input defaultValue label="默认值"}}
+        {{/formFor}}
+        <button {{action 'create'}} class="button glow button-rounded button-flat-primary">创建</button>
+        &nbsp;&nbsp;&nbsp;
+        <button {{action 'goBack'}} class="button glow button-rounded button-flat">取消</button>
+     </div>
   </div>
 </script>
 

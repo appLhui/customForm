@@ -18,3 +18,6 @@ CustomForm.CustomTableNewController = Ember.ObjectController.extend
         @get('store').commit() if @get('model').get('isValid')
 
 
+
+
+

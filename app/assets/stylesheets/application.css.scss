@@ -61,3 +61,62 @@ a {
   content: "";
   box-shadow: 0 0 15px rgba(0,0,0,0.6);
 }
+
+
+
+.txt {
+  text-shadow: #005580 0 0 1px;
+  transition: text-shadow 1s cubic-bezier(0, 1, 0, 1);
+}
+
+legend:hover .txt {
+  color: hsla(0,0%,0%,0);
+  text-shadow: #005580 0 0 25px;
+  transition: text-shadow 1s cubic-bezier(0, 0.75, 0, 1);
+}
+
+a.accordion-toggle:hover {
+  padding-left: 25px;
+  text-shadow: #005580 0 0 1px;
+  transition:  padding-left .5s cubic-bezier(.26,.51,.44,2.92);
+}
+a.accordion-toggle {
+
+  transition:  padding-left .5s cubic-bezier(.26,.51,.44,2.92);
+}
+
+
+input, textarea {
+  padding: 9px;
+  border: solid 1px #E5E5E5;
+  outline: 0;
+  font: normal 13px/100% Verdana, Tahoma, sans-serif;
+  background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+  background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+textarea {
+  width: 400px;
+  max-width: 400px;
+  height: 150px;
+  line-height: 150%;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+  border-color: #C9C9C9;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+}
+
+.form label {
+  margin-left: 10px;
+  color: #999999;
+}
+
+
+
+
+

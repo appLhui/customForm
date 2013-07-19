@@ -26,6 +26,8 @@ CustomForm = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
 
+
+
 //Ember.LOG_BINDINGS = true
 
 //= require_tree .
